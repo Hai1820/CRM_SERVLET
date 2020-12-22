@@ -52,8 +52,8 @@
 						<h4 class="page-title">Danh sách dự án</h4>
 					</div>
 					<div class="col-lg-9 col-sm-8 col-md-8 col-xs-12 text-right">
-						<a href="<%=request.getContextPath() %>/job/add" class="btn btn-sm btn-success">Thêm
-							mới</a>
+						<a href="<%=request.getContextPath()%>/job/add"
+							class="btn btn-sm btn-success">Thêm mới</a>
 					</div>
 					<!-- /.col-lg-12 -->
 				</div>
@@ -81,12 +81,15 @@
 											for (Job job : jobs) {
 										%>
 										<tr>
-											<td><%=job.getId() %></td>
-											<td><%=job.getName() %></td>
-											<td><%=job.getStartDate() %></td>
-											<td><%=job.getEndDate() %></td>
-											<td><a href="#" class="btn btn-sm btn-primary">Sửa</a> <a
-												href="#" class="btn btn-sm btn-danger">Xóa</a> <a
+											<td><%=job.getId()%></td>
+											<td><%=job.getName()%></td>
+											<td><%=job.getStartDate()%></td>
+											<td><%=job.getEndDate()%></td>
+											<td><a
+												href="<%=request.getContextPath()%>/job/edit?id=<%=job.getId()%> "
+												class="btn btn-sm btn-primary">Sửa</a> <a
+												href="<%=request.getContextPath()%>/job/delete?id=<%=job.getId()%> "
+												class="btn btn-sm btn-danger">Xóa</a> <a
 												href="groupwork-details.html" class="btn btn-sm btn-info">Xem</a>
 											</td>
 										</tr>

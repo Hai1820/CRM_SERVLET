@@ -1,17 +1,16 @@
 package com.myclass.entity;
 
-import java.sql.Timestamp;
+import java.sql.Date;
 
 public class Task {
 	private int id;
 	private String name;
-	private Timestamp startDate;
-	private Timestamp endDate;
+	private Date startDate;
+	private Date endDate;
 	private int userId;
 	private int jobId;
 	private int statusId;
 
-//	generate getter and setter
 	public int getId() {
 		return id;
 	}
@@ -28,19 +27,19 @@ public class Task {
 		this.name = name;
 	}
 
-	public Timestamp getStartDate() {
+	public Date getStartDate() {
 		return startDate;
 	}
 
-	public void setStartDate(Timestamp startDate) {
+	public void setStartDate(Date startDate) {
 		this.startDate = startDate;
 	}
 
-	public Timestamp getEndDate() {
+	public Date getEndDate() {
 		return endDate;
 	}
 
-	public void setEndDate(Timestamp endDate) {
+	public void setEndDate(Date endDate) {
 		this.endDate = endDate;
 	}
 
@@ -68,7 +67,7 @@ public class Task {
 		this.statusId = statusId;
 	}
 
-	public Task(int id, String name, Timestamp startDate, Timestamp endDate, int userId, int jobId, int statusId) {
+	public Task(int id, String name, Date startDate, Date endDate, int userId, int jobId, int statusId) {
 		super();
 		this.id = id;
 		this.name = name;

@@ -16,9 +16,7 @@ import com.myclass.repository.RoleRepository;
 @WebServlet(name = "role", urlPatterns = { UrlConstants.URL_ROLE, UrlConstants.URL_ROLE_ADD, UrlConstants.URL_ROLE_EDIT,
 		UrlConstants.URL_ROLE_DELETE })
 public class RoleController extends HttpServlet {
-	/**
-	 * 
-	 */
+	
 	private static final long serialVersionUID = 1L;
 
 	/*
@@ -36,20 +34,28 @@ public class RoleController extends HttpServlet {
 		String path = req.getServletPath();
 
 		switch (path) {
+//		created on 2/12/2020 by Nguyen Hoang Hai
+//		get all role list
 		case UrlConstants.URL_ROLE:
 			List<Role> roles = roleRepository.getAllRole();
 			req.setAttribute("roles", roles);
 			req.getRequestDispatcher("/WEB-INF/views/role/role-table.jsp").forward(req, resp);
 			break;
+//			created on 2/12/2020 By Nguyen Hoang Hai
+//			add new role 
 		case UrlConstants.URL_ROLE_ADD:
 			req.getRequestDispatcher("/WEB-INF/views/role/role-add.jsp").forward(req, resp);
 			break;
+//			created on 2/12/2020 by Nguyen Hoang Hai
+//			edit role
 		case UrlConstants.URL_ROLE_EDIT:
 			int id = Integer.valueOf(req.getParameter("id"));
 			Role role = roleRepository.getRoleById(id);
 			req.setAttribute("role", role);
 			req.getRequestDispatcher("/WEB-INF/views/role/role-edit.jsp").forward(req, resp);
 			break;
+//			created on 2/12/2020 by Nguyen Hoang Hai
+//			delete role
 		case UrlConstants.URL_ROLE_DELETE:
 			int idDelelete = Integer.valueOf(req.getParameter("id"));
 			roleRepository.deleteRoleById(idDelelete);
@@ -67,6 +73,8 @@ public class RoleController extends HttpServlet {
 		String description = req.getParameter("description");
 
 		switch (path) {
+//		created on 2/12/2020 by Nguyen Hoang Hai
+//		add new role 
 		case UrlConstants.URL_ROLE_ADD:
 			Role role = new Role();
 			role.setDescription(description);
@@ -74,6 +82,8 @@ public class RoleController extends HttpServlet {
 			roleRepository.save(role);
 			resp.sendRedirect(req.getContextPath() + UrlConstants.URL_ROLE);
 			break;
+//			created on 2/12/2020 by Nguyen Hoang Hai
+//			edit role
 		case UrlConstants.URL_ROLE_EDIT:
 			int idEdit = Integer.parseInt(req.getParameter("id"));
 			Role roleToEdit = roleRepository.getRoleById(idEdit);

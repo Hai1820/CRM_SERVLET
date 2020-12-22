@@ -1,3 +1,4 @@
+<%@page import="com.myclass.entity.Task"%>
 <%@page import="com.myclass.constants.UrlConstants"%>
 <%@page import="com.myclass.entity.User"%>
 <%@page import="com.myclass.entity.Role"%>
@@ -5,8 +6,9 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%
-	List<Role> roles = (List<Role>) request.getAttribute("roles");
+List<Role> roles = (List<Role>) request.getAttribute("roles");
 User user = (User) request.getAttribute("user");
+
 %>
 <!DOCTYPE html>
 <html>
@@ -59,10 +61,9 @@ User user = (User) request.getAttribute("user");
 					<div class="col-md-8 col-xs-12">
 						<div class="white-box">
 							<form method="post"
-								action="<%=request.getContextPath()%><%=UrlConstants.URL_ROLE_EDIT%>"
+								action="<%=request.getContextPath()%><%=UrlConstants.URL_USER_EDIT%>"
 								class="form-horizontal form-material">
 								<input type="hidden" name="id" value="<%=user.getId()%>"
-									type="text" placeholder="Johnathan Doe"
 									class="form-control form-control-line">
 								<div class="form-group">
 									<label class="col-md-12">Full Name</label>
@@ -120,7 +121,7 @@ User user = (User) request.getAttribute("user");
 									<div class="col-sm-12">
 										<button type="submit" class="btn btn-success">Update
 											User</button>
-										<a href="<%=request.getContextPath()%>/role"
+										<a href="<%=request.getContextPath()%>/user"
 											class="btn btn-primary">Quay lại</a>
 									</div>
 								</div>

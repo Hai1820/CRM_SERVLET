@@ -12,13 +12,18 @@
 	href='<c:url value="<%=request.getContextPath()%>/static/assets/plugins/images/favicon.png"></c:url>'>
 <title>403 - Forbidden</title>
 <!-- Bootstrap Core CSS -->
-<link href='<%=request.getContextPath() %>/static/bootstrap/dist/css/bootstrap.min.css' rel="stylesheet">
+<link
+	href='<%=request.getContextPath()%>/static/bootstrap/dist/css/bootstrap.min.css'
+	rel="stylesheet">
 <!-- animation CSS -->
-<link href='<%=request.getContextPath() %>/static/css/animate.css' rel="stylesheet">
+<link href='<%=request.getContextPath()%>/static/css/animate.css'
+	rel="stylesheet">
 <!-- Custom CSS -->
-<link href='<%=request.getContextPath() %>/static/css/style.css' rel="stylesheet">
+<link href='<%=request.getContextPath()%>/static/css/style.css'
+	rel="stylesheet">
 <!-- color CSS -->
-<link href='<%=request.getContextPath() %>/static/css/colors/blue.css' id="theme" rel="stylesheet">
+<link href='<%=request.getContextPath()%>/static/css/colors/blue.css'
+	id="theme" rel="stylesheet">
 </head>
 <body>
 	<!-- Preloader -->
@@ -32,7 +37,7 @@
 				<h3 class="text-uppercase">Bạn không có quyền truy cập !</h3>
 				<p class="text-muted m-t-30 m-b-30">YOU SEEM TO BE TRYING TO
 					FIND HIS WAY HOME</p>
-				<a href='<c:url value="/home" />'
+				<a href="<%=request.getContextPath()%>/home"
 					class="btn btn-info btn-rounded waves-effect waves-light m-b-40">Về
 					trang chủ</a>
 			</div>

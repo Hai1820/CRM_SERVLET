@@ -6,12 +6,14 @@ import java.sql.ResultSet;
 import java.util.LinkedList;
 import java.util.List;
 
-
 import com.myclass.db.MySqlConnection;
 import com.myclass.entity.Role;
 
+/*
+ * created on 2/12/2020 by Nguyen Hoang Hai
+ * */
 public class RoleRepository {
-
+//get all list role
 	public List<Role> getAllRole() {
 		String query = "SELECT * from roles";
 		List<Role> roles = new LinkedList<Role>();
@@ -32,7 +34,7 @@ public class RoleRepository {
 		}
 		return roles;
 	}
-
+// method save to add new role
 	public int save(Role role) {
 		String query = "insert into roles (name, description) values(?,?)";
 		try {
@@ -47,7 +49,7 @@ public class RoleRepository {
 		}
 		return 0;
 	}
-
+//method to getRole by id
 	public Role getRoleById(int id) {
 		if (id == 0) {
 			return new Role();
@@ -70,7 +72,7 @@ public class RoleRepository {
 		}
 		return new Role();
 	}
-
+//method to update role
 	public void updateRoleById(int id, Role role) {
 		if (id == 0) {
 			return;
@@ -99,15 +101,15 @@ public class RoleRepository {
 			Connection connection = MySqlConnection.getConnection();
 			PreparedStatement statement = connection.prepareStatement(query);
 			statement.setInt(1, id);
-			int result= statement.executeUpdate();
-			if(result<1) {
+			int result = statement.executeUpdate();
+			if (result < 1) {
 				System.out.println("DELETE FROM ROLE UNSUCCESFULLY");
 			}
-			
+
 		} catch (Exception e) {
 			e.getMessage();
 		}
-		
+
 	}
 
 }

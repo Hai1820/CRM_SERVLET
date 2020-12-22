@@ -14,8 +14,9 @@
 		<div class="row mt-5">
 			<div class="col-md-5 m-auto mt-5">
 				<h3 class="text-center">ĐĂNG NHẬP HỆ THỐNG</h3>
+				<p>${message}</p>
 				<div class="p-4 border mt-4">
-					<form action="/action_page.php">
+					<form action="<%=request.getContextPath()%>/login" method="post">
 						<div class="form-group">
 							<label>Email</label> <input type="email" class="form-control"
 								name="email">

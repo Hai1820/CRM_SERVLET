@@ -1,5 +1,20 @@
+<%@page import="java.text.DecimalFormat"%>
+<%@page import="com.myclass.dto.TaskDto"%>
+<%@page import="com.myclass.entity.Task"%>
+<%@page import="com.myclass.entity.User"%>
+<%@page import="java.util.List"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+
+<%
+	List<Task> tasks = (List<Task>) request.getAttribute("userDetails");
+User user = (User) request.getAttribute("user");
+List<Task> counts = (List<Task>) request.getAttribute("counts");
+TaskDto count = (TaskDto) request.getAttribute("count");
+float percent;
+DecimalFormat percentF = new DecimalFormat("#.##");
+String percentFormat;
+%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -9,7 +24,7 @@
 <meta name="description" content="">
 <meta name="author" content="">
 <link rel="icon" type="image/png" sizes="16x16"
-	href="<%=request.getContextPath() %>/static/plugins/images/favicon.png">
+	href="<%=request.getContextPath()%>/static/plugins/images/favicon.png">
 <title>Pixel Admin</title>
 <!-- Bootstrap Core CSS -->
 <link
@@ -50,14 +65,15 @@
 					<div class="col-md-4 col-xs-12">
 						<div class="white-box">
 							<div class="user-bg">
-								<img width="100%" alt="user" src="<%=request.getContextPath() %>/static/plugins/images/large/img1.jpg">
+								<img width="100%" alt="user"
+									src="<%=request.getContextPath()%>/static/plugins/images/large/img1.jpg">
 								<div class="overlay-box">
 									<div class="user-content">
 										<a href="javascript:void(0)"><img
-											src="<%=request.getContextPath() %>/static/plugins/images/users/genu.jpg"
+											src="<%=request.getContextPath()%>/static/plugins/images/users/genu.jpg"
 											class="thumb-lg img-circle" alt="img"></a>
-										<h4 class="text-white">Nguyễn Văn Tèo</h4>
-										<h5 class="text-white">info.teo@gmail.com</h5>
+										<h4 class="text-white"><%=user.getFullName()%></h4>
+										<h5 class="text-white"><%=user.getEmail()%></h5>
 									</div>
 								</div>
 							</div>
@@ -68,11 +84,21 @@
 						<!-- BEGIN THỐNG KÊ -->
 						<div class="row">
 							<!--col -->
+							<%
+								for (Task task : counts) {
+							%>
+							<%
+								if (task.getStatusId() == 1) {
+							%>
+							<%
+								percent = ((Float.valueOf(task.getId()) / Float.valueOf(count.getCount())) * 100);
+							percentFormat = percentF.format(percent);
+							%>
 							<div class="col-lg-4 col-md-4 col-sm-12 col-xs-12">
 								<div class="white-box">
 									<div class="col-in row">
 										<div class="col-xs-12">
-											<h3 class="counter text-right m-t-15 text-danger">20%</h3>
+											<h3 class="counter text-right m-t-15 text-danger"><%=percentFormat + "%"%></h3>
 										</div>
 										<div class="col-xs-12">
 											<i data-icon="E" class="linea-icon linea-basic"></i>
@@ -82,19 +108,36 @@
 											<div class="progress">
 												<div class="progress-bar progress-bar-danger"
 													role="progressbar" aria-valuenow="40" aria-valuemin="0"
-													aria-valuemax="100" style="width: 20%"></div>
+													aria-valuemax="100" style="width: <%=percentFormat + "%"%>"></div>
 											</div>
 										</div>
 									</div>
 								</div>
 							</div>
+							<%
+								}
+							%>
+							<%
+								}
+							%>
+
 							<!-- /.col -->
 							<!--col -->
+							<%
+								for (Task task : counts) {
+							%>
+							<%
+								if (task.getStatusId() == 2) {
+							%>
+							<%
+								percent = ((Float.valueOf(task.getId()) / Float.valueOf(count.getCount())) * 100);
+							percentFormat = percentF.format(percent);
+							%>
 							<div class="col-lg-4 col-md-4 col-sm-12 col-xs-12">
 								<div class="white-box">
 									<div class="col-in row">
 										<div class="col-xs-12">
-											<h3 class="counter text-right m-t-15 text-megna">50%</h3>
+											<h3 class="counter text-right m-t-15 text-megna"><%=percentFormat + "%"%></h3>
 										</div>
 										<div class="col-xs-12">
 											<i class="linea-icon linea-basic" data-icon="&#xe01b;"></i>
@@ -104,19 +147,36 @@
 											<div class="progress">
 												<div class="progress-bar progress-bar-megna"
 													role="progressbar" aria-valuenow="40" aria-valuemin="0"
-													aria-valuemax="100" style="width: 50%"></div>
+													aria-valuemax="100" style="width: <%=percentFormat%>"></div>
 											</div>
 										</div>
 									</div>
 								</div>
 							</div>
+							<%
+								}
+							%>
+							<%
+								}
+							%>
+
 							<!-- /.col -->
 							<!--col -->
+							<%
+								for (Task task : counts) {
+							%>
+							<%
+								if (task.getStatusId() == 3) {
+							%>
+							<%
+								percent = ((Float.valueOf(task.getId()) / Float.valueOf(count.getCount())) * 100);
+							percentFormat = percentF.format(percent);
+							%>
 							<div class="col-lg-4 col-md-4 col-sm-12 col-xs-12">
 								<div class="white-box">
 									<div class="col-in row">
 										<div class="col-xs-12">
-											<h3 class="counter text-right m-t-15 text-primary">30%</h3>
+											<h3 class="counter text-right m-t-15 text-primary"><%=percentFormat + "%"%></h3>
 										</div>
 										<div class="col-xs-12">
 											<i class="linea-icon linea-basic" data-icon="&#xe00b;"></i>
@@ -126,12 +186,19 @@
 											<div class="progress">
 												<div class="progress-bar progress-bar-primary"
 													role="progressbar" aria-valuenow="40" aria-valuemin="0"
-													aria-valuemax="100" style="width: 30%"></div>
+													aria-valuemax="100" style="width: <%=percentFormat%>"></div>
 											</div>
 										</div>
 									</div>
 								</div>
 							</div>
+							<%
+								}
+							%>
+							<%
+								}
+							%>
+
 							<!-- /.col -->
 						</div>
 						<!-- END THỐNG KÊ -->
@@ -147,21 +214,27 @@
 						<div class="white-box">
 							<h3 class="box-title">Chưa thực hiện</h3>
 							<div class="message-center">
+								<%
+									for (Task task : tasks) {
+								%>
+								<%
+									if (task.getStatusId() == 1) {
+								%>
 								<a href="#">
 									<div class="mail-contnet">
-										<h5>Phân tích hệ thống</h5>
+										<h5><%=task.getName()%></h5>
 										<span class="mail-desc"></span> <span class="time">Bắt
-											đầu: 05/07/2020</span> <span class="time">Kết thúc:
-											17/07/2020</span>
-									</div>
-								</a> <a href="#">
-									<div class="mail-contnet">
-										<h5>Thiết kế database</h5>
-										<span class="mail-desc"></span> <span class="time">Bắt
-											đầu: 05/07/2020</span> <span class="time">Kết thúc:
-											17/07/2020</span>
+											đầu:<%=task.getStartDate()%></span> <span class="time">Kết
+											thúc: <%=task.getEndDate()%></span>
 									</div>
 								</a>
+								<%
+									}
+								%>
+								<%
+									}
+								%>
+
 							</div>
 						</div>
 					</div>
@@ -169,21 +242,26 @@
 						<div class="white-box">
 							<h3 class="box-title">Đang thực hiện</h3>
 							<div class="message-center">
+								<%
+									for (Task task : tasks) {
+								%>
+								<%
+									if (task.getStatusId() == 2) {
+								%>
 								<a href="#">
 									<div class="mail-contnet">
-										<h5>Phân tích hệ thống</h5>
+										<h5><%=task.getName()%></h5>
 										<span class="mail-desc"></span> <span class="time">Bắt
-											đầu: 05/07/2020</span> <span class="time">Kết thúc:
-											17/07/2020</span>
-									</div>
-								</a> <a href="#">
-									<div class="mail-contnet">
-										<h5>Thiết kế database</h5>
-										<span class="mail-desc"></span> <span class="time">Bắt
-											đầu: 05/07/2020</span> <span class="time">Kết thúc:
-											17/07/2020</span>
+											đầu:<%=task.getStartDate()%></span> <span class="time">Kết
+											thúc: <%=task.getEndDate()%></span>
 									</div>
 								</a>
+								<%
+									}
+								%>
+								<%
+									}
+								%>
 							</div>
 						</div>
 					</div>
@@ -191,21 +269,26 @@
 						<div class="white-box">
 							<h3 class="box-title">Đã hoàn thành</h3>
 							<div class="message-center">
+								<%
+									for (Task task : tasks) {
+								%>
+								<%
+									if (task.getStatusId() == 3) {
+								%>
 								<a href="#">
 									<div class="mail-contnet">
-										<h5>Phân tích hệ thống</h5>
+										<h5><%=task.getName()%></h5>
 										<span class="mail-desc"></span> <span class="time">Bắt
-											đầu: 05/07/2020</span> <span class="time">Kết thúc:
-											17/07/2020</span>
-									</div>
-								</a> <a href="#">
-									<div class="mail-contnet">
-										<h5>Thiết kế database</h5>
-										<span class="mail-desc"></span> <span class="time">Bắt
-											đầu: 05/07/2020</span> <span class="time">Kết thúc:
-											17/07/2020</span>
+											đầu:<%=task.getStartDate()%></span> <span class="time">Kết
+											thúc: <%=task.getEndDate()%></span>
 									</div>
 								</a>
+								<%
+									}
+								%>
+								<%
+									}
+								%>
 							</div>
 						</div>
 					</div>

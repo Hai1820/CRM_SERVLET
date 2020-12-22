@@ -90,8 +90,8 @@
 												class="btn btn-sm btn-primary">Sửa</a> <a
 												href="<%=request.getContextPath()%>/user/delete?id=<%=user.getId()%>"
 												class="btn btn-sm btn-danger">Xóa</a> <a
-												href="user-details.html" class="btn btn-sm btn-info">Xem</a>
-											</td>
+												href="<%=request.getContextPath() %>/user/detail?id=<%=user.getId() %>"
+												class="btn btn-sm btn-info">Xem</a></td>
 										</tr>
 										<%
 											}
